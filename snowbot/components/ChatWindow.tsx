@@ -78,7 +78,7 @@ const ChatWindow: React.FC = () => {
         {messages.map((msg) => (
           <Message key={msg.id} message={msg} />
         ))}
-        {isLoading && messages[messages.length - 1]?.sender !== 'bot' && (
+        {isLoading && (
           <div className="flex justify-start">
             <div className="flex items-center gap-2 bg-slate-700 rounded-lg px-4 py-3 max-w-lg">
               <TypingIndicator />
