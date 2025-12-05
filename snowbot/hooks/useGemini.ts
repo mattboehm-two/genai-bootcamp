@@ -10,7 +10,8 @@ export const useGemini = () => {
   const [error, setError] = useState<string | null>(null);
 
   const ai = useMemo(() => {
-    const apiKey = process.env.API_KEY;
+    // I know this is terrible to do for a real app, but ran into issues injecting the secret properly
+    const apiKey = "AIzaSyA60Fn5tR3YfsFeB4z44zCAIPT02tOyfpM";
     if (!apiKey) {
       setError('API key is not configured.');
       console.error('API_KEY environment variable not set.');
