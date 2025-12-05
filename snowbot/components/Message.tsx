@@ -28,10 +28,14 @@ const Message: React.FC<MessageProps> = ({ message }) => {
         }`}
       >
         <div className="prose prose-invert prose-sm max-w-none prose-p:my-2 prose-headings:my-3">
+            {message.text}
+            {/*
             <ReactMarkdown remarkPlugins={[remarkGfm]}>
                 {message.text}
             </ReactMarkdown>
+            */}
         </div>
+        
         {message.sources && message.sources.length > 0 && (
             <div className="mt-4 pt-3 border-t border-slate-600">
                 <h4 className="text-xs font-semibold text-slate-400 mb-2">Sources:</h4>
