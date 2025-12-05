@@ -4,11 +4,13 @@ steps:
   - name: 'gcr.io/cloud-builders/docker'
     args: ['build', '-t', '${_LOCATION}-docker.pkg.dev/${PROJECT_ID}/${_REPOSITORY}/${_SERVICE_NAME}:${COMMIT_SHA}', '.']
     id: 'Build'
+    dir: 'snowbot'
 
   # 2. Push the container image to Artifact Registry
   - name: 'gcr.io/cloud-builders/docker'
     args: ['push', '${_LOCATION}-docker.pkg.dev/${PROJECT_ID}/${_REPOSITORY}/${_SERVICE_NAME}:${COMMIT_SHA}']
     id: 'Push'
+    dir: 'snowbot'
 
   # 3. Deploy the container image to Cloud Run
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
@@ -23,6 +25,7 @@ steps:
       - '--allow-unauthenticated' # Make the service publicly accessible
       - '--set-env-vars=API_KEY=${_API_KEY}' # Pass the API key from the build trigger
     id: 'Deploy'
+    dir: 'snowbot'
 
 # Store the built image in Artifact Registry
 images:
