@@ -36,7 +36,7 @@ options:
 substitutions:
   _SERVICE_NAME: 'alaska-snow-bot'
   _REPOSITORY: 'snowbot' # Default Artifact Registry repo name
-  _LOCATION: 'us-central1' # Default Cloud Run region
+  _LOCATION: 'us-east1' # Default Cloud Run region
 
 # Note on API_KEY:
 # This configuration expects a substitution variable `_API_KEY` to be passed to the
