@@ -1,0 +1,15 @@
+
+{
+  "name": "alaska-snow-bot-server",
+  "version": "1.0.0",
+  "description": "Server for the Alaska Snow Bot",
+  "main": "server.mjs",
+  "type": "module",
+  "scripts": {
+    "start": "node server.mjs"
+  },
+  "dependencies": {
+    "esbuild": "^0.20.2",
+    "express": "^4.19.2"
+  }
+}

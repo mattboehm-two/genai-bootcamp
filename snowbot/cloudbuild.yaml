@@ -1,0 +1,42 @@
+
+steps:
+  # 1. Build the container image
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', '${_LOCATION}-docker.pkg.dev/${PROJECT_ID}/${_REPOSITORY}/${_SERVICE_NAME}:${COMMIT_SHA}', '.']
+    id: 'Build'
+
+  # 2. Push the container image to Artifact Registry
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', '${_LOCATION}-docker.pkg.dev/${PROJECT_ID}/${_REPOSITORY}/${_SERVICE_NAME}:${COMMIT_SHA}']
+    id: 'Push'
+
+  # 3. Deploy the container image to Cloud Run
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: gcloud
+    args:
+      - 'run'
+      - 'deploy'
+      - '${_SERVICE_NAME}'
+      - '--image=${_LOCATION}-docker.pkg.dev/${PROJECT_ID}/${_REPOSITORY}/${_SERVICE_NAME}:${COMMIT_SHA}'
+      - '--region=${_LOCATION}'
+      - '--platform=managed'
+      - '--allow-unauthenticated' # Make the service publicly accessible
+      - '--set-env-vars=API_KEY=${_API_KEY}' # Pass the API key from the build trigger
+    id: 'Deploy'
+
+# Store the built image in Artifact Registry
+images:
+  - '${_LOCATION}-docker.pkg.dev/${PROJECT_ID}/${_REPOSITORY}/${_SERVICE_NAME}:${COMMIT_SHA}'
+
+# Default substitution variables
+substitutions:
+  _SERVICE_NAME: 'alaska-snow-bot'
+  _REPOSITORY: 'cloud-run-source-deploy' # Default Artifact Registry repo name
+  _LOCATION: 'us-central1' # Default Cloud Run region
+
+# Note on API_KEY:
+# This configuration expects a substitution variable `_API_KEY` to be passed to the
+# Cloud Build trigger. For enhanced security in a production environment, it is
+# highly recommended to store the API key in Google Secret Manager. The Cloud Run
+# service account can then be granted access to the secret, which can be mounted
+# as an environment variable during deployment.
