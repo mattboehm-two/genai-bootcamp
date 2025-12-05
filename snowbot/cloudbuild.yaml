@@ -27,7 +27,8 @@ steps:
 # Store the built image in Artifact Registry
 images:
   - '${_LOCATION}-docker.pkg.dev/${PROJECT_ID}/${_REPOSITORY}/${_SERVICE_NAME}:${COMMIT_SHA}'
-
+options:
+  logging: CLOUD_LOGGING_ONLY
 # Default substitution variables
 substitutions:
   _SERVICE_NAME: 'alaska-snow-bot'
