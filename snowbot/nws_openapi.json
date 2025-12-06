@@ -1,0 +1,158 @@
+{
+    "openapi": "3.0.3",
+    "info": {
+        "title": "weather.gov API",
+        "description": "weather.gov API",
+        "version": "3.3.2"
+    },
+    "servers": [
+        {
+            "url": "https://api.weather.gov",
+            "description": "Production server"
+        }
+    ],
+    "paths": {
+    "/points/{latitude},{longitude}": {
+            "get": {
+                "description": "Returns metadata about a given latitude/longitude point",
+                "summary": "Provides weather forecast for a given latitude and longitude",
+                "operationId": "point",
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "headers": {
+                            "X-Correlation-Id": {
+                                "$ref": "#/components/headers/CorrelationId"
+                            },
+                            "X-Request-Id": {
+                                "$ref": "#/components/headers/RequestId"
+                            },
+                            "X-Server-Id": {
+                                "$ref": "#/components/headers/ServerId"
+                            }
+                        },
+                        "content": {
+                            "application/geo+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PointGeoJson"
+                                }
+                            },
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PointJsonLd"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/Error"
+                    }
+                },
+                "parameters": []
+            },
+            "parameters": [
+                {
+                    "$ref": "#/components/parameters/Latitude"
+                },
+                {
+                    "$ref": "#/components/parameters/Longitude"
+                }
+            ]
+        }
+    },
+    "components": {
+        "schemas": {
+
+            "PointJsonLd": {
+
+
+                        "type": "object"
+                    
+            }       
+
+        },
+        "responses": {
+            "Error": {
+                "description": "An error response.",
+                "headers": {
+                    "X-Correlation-Id": {
+                        "$ref": "#/components/headers/CorrelationId"
+                    },
+                    "X-Request-Id": {
+                        "$ref": "#/components/headers/RequestId"
+                    },
+                    "X-Server-Id": {
+                        "$ref": "#/components/headers/ServerId"
+                    }
+                },
+                "content": {
+                    "application/problem+json": {
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                }
+
+            }
+ 
+        },
+        "parameters": {
+            "Latitude": {
+                "name": "latitude",
+                "in": "path",
+                "description": "Latitude",
+                "required": true,
+                "schema": {
+                    "multipleOf": 0.0001,
+                    "maximum": 90,
+                    "minimum": -90,
+                    "type": "number"
+                }
+            },
+            "Longitude": {
+                "name": "longitude",
+                "in": "path",
+                "description": "Longitude",
+                "required": true,
+                "schema": {
+                    "multipleOf": 0.0001,
+                    "maximum": 180,
+                    "minimum": -180,
+                    "type": "number"
+                }
+            }
+        },
+        "headers": {
+            "CorrelationId": {
+                "description": "A unique identifier for the request, used for NWS debugging purposes. Please include this identifier with any correspondence to help us investigate your issue.\n",
+                "schema": {
+                    "type": "string"
+                }
+            },
+            "RequestId": {
+                "description": "A unique identifier for the request, used for NWS debugging purposes. Please include this identifier with any correspondence to help us investigate your issue.\n",
+                "schema": {
+                    "type": "string"
+                }
+            },
+            "ServerId": {
+                "description": "The identifier of the server that generated the response, used for NWS debugging purposes. Please include this identifier with any correspondence to help us investigate your issue.\n",
+                "schema": {
+                    "type": "string"
+                }
+            },
+            "X-Api-Key": {
+                "description": "A token that a client provides when making API calls.  Please include this identifier with any correspondence to help us investigate your issue.\n",
+                "schema": {
+                    "type": "string"
+                }
+            }
+        
+
+        }
+    },
+    "externalDocs": {
+        "description": "Full API documentation",
+        "url": "https://www.weather.gov/documentation/services-web-api"
+    }
+}
