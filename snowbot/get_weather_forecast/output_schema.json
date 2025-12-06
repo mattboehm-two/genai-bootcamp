@@ -1,0 +1,364 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "@context": {
+      "type": "array",
+      "items": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "@version": {
+              "type": "string"
+            },
+            "wx": {
+              "type": "string"
+            },
+            "s": {
+              "type": "string"
+            },
+            "geo": {
+              "type": "string"
+            },
+            "unit": {
+              "type": "string"
+            },
+            "@vocab": {
+              "type": "string"
+            },
+            "geometry": {
+              "type": "object",
+              "properties": {
+                "@id": {
+                  "type": "string"
+                },
+                "@type": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "@id",
+                "@type"
+              ]
+            },
+            "city": {
+              "type": "string"
+            },
+            "state": {
+              "type": "string"
+            },
+            "distance": {
+              "type": "object",
+              "properties": {
+                "@id": {
+                  "type": "string"
+                },
+                "@type": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "@id",
+                "@type"
+              ]
+            },
+            "bearing": {
+              "type": "object",
+              "properties": {
+                "@type": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "@type"
+              ]
+            },
+            "value": {
+              "type": "object",
+              "properties": {
+                "@id": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "@id"
+              ]
+            },
+            "unitCode": {
+              "type": "object",
+              "properties": {
+                "@id": {
+                  "type": "string"
+                },
+                "@type": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "@id",
+                "@type"
+              ]
+            },
+            "forecastOffice": {
+              "type": "object",
+              "properties": {
+                "@type": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "@type"
+              ]
+            },
+            "forecastGridData": {
+              "type": "object",
+              "properties": {
+                "@type": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "@type"
+              ]
+            },
+            "publicZone": {
+              "type": "object",
+              "properties": {
+                "@type": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "@type"
+              ]
+            },
+            "county": {
+              "type": "object",
+              "properties": {
+                "@type": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "@type"
+              ]
+            }
+          },
+          "required": [
+            "@version",
+            "wx",
+            "s",
+            "geo",
+            "unit",
+            "@vocab",
+            "geometry",
+            "city",
+            "state",
+            "distance",
+            "bearing",
+            "value",
+            "unitCode",
+            "forecastOffice",
+            "forecastGridData",
+            "publicZone",
+            "county"
+          ]
+        }
+      ]
+    },
+    "id": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string"
+    },
+    "geometry": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string"
+        },
+        "coordinates": {
+          "type": "array",
+          "items": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "number"
+            }
+          ]
+        }
+      },
+      "required": [
+        "type",
+        "coordinates"
+      ]
+    },
+    "properties": {
+      "type": "object",
+      "properties": {
+        "@id": {
+          "type": "string"
+        },
+        "@type": {
+          "type": "string"
+        },
+        "cwa": {
+          "type": "string"
+        },
+        "forecastOffice": {
+          "type": "string"
+        },
+        "gridId": {
+          "type": "string"
+        },
+        "gridX": {
+          "type": "number"
+        },
+        "gridY": {
+          "type": "number"
+        },
+        "forecast": {
+          "type": "string"
+        },
+        "forecastHourly": {
+          "type": "string"
+        },
+        "forecastGridData": {
+          "type": "string"
+        },
+        "observationStations": {
+          "type": "string"
+        },
+        "relativeLocation": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string"
+            },
+            "geometry": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string"
+                },
+                "coordinates": {
+                  "type": "array",
+                  "items": [
+                    {
+                      "type": "number"
+                    },
+                    {
+                      "type": "number"
+                    }
+                  ]
+                }
+              },
+              "required": [
+                "type",
+                "coordinates"
+              ]
+            },
+            "properties": {
+              "type": "object",
+              "properties": {
+                "city": {
+                  "type": "string"
+                },
+                "state": {
+                  "type": "string"
+                },
+                "distance": {
+                  "type": "object",
+                  "properties": {
+                    "unitCode": {
+                      "type": "string"
+                    },
+                    "value": {
+                      "type": "number"
+                    }
+                  },
+                  "required": [
+                    "unitCode",
+                    "value"
+                  ]
+                },
+                "bearing": {
+                  "type": "object",
+                  "properties": {
+                    "unitCode": {
+                      "type": "string"
+                    },
+                    "value": {
+                      "type": "number"
+                    }
+                  },
+                  "required": [
+                    "unitCode",
+                    "value"
+                  ]
+                }
+              },
+              "required": [
+                "city",
+                "state",
+                "distance",
+                "bearing"
+              ]
+            }
+          },
+          "required": [
+            "type",
+            "geometry",
+            "properties"
+          ]
+        },
+        "forecastZone": {
+          "type": "string"
+        },
+        "county": {
+          "type": "string"
+        },
+        "fireWeatherZone": {
+          "type": "string"
+        },
+        "timeZone": {
+          "type": "string"
+        },
+        "radarStation": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "@id",
+        "@type",
+        "cwa",
+        "forecastOffice",
+        "gridId",
+        "gridX",
+        "gridY",
+        "forecast",
+        "forecastHourly",
+        "forecastGridData",
+        "observationStations",
+        "relativeLocation",
+        "forecastZone",
+        "county",
+        "fireWeatherZone",
+        "timeZone",
+        "radarStation"
+      ]
+    }
+  },
+  "required": [
+    "@context",
+    "id",
+    "type",
+    "geometry",
+    "properties"
+  ]
+}
