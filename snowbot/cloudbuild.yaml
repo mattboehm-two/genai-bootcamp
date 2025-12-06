@@ -19,7 +19,7 @@ steps:
       - 'run'
       - 'deploy'
       - '${_SERVICE_NAME}'
-      - '--image=${_LOCATION}-docker.pkg.dev/${PROJECT_ID}/${_REPOSITORY}/${_SERVICE_NAME}:${COMMIT_SHA}'
+      - '--image=${_LOCATION}-docker.pkg.dev/${PROJECT_ID}/${_REPOSITORY}:${COMMIT_SHA}'
       - '--region=${_LOCATION}'
       - '--platform=managed'
       - '--allow-unauthenticated' # Make the service publicly accessible
